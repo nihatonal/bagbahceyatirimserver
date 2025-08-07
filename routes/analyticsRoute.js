@@ -15,7 +15,7 @@ router.get('/traffic-sources', trafficSources);
 router.get('/analytics-summary', getAnalyticsSummary);
 router.get('/analytics-chartdata', getAnalyticsChartData);
 router.get('/analytics-top-pages', analyticsTopPagesOverview);
-router.get('/anaytics-domains', getDomainViews)
+router.get('/analytics-domains', getDomainViews)
 
 
 

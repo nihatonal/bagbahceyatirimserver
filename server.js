@@ -1,4 +1,3 @@
-// server.js
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -9,37 +8,34 @@ import newsletterRoutes from './routes/newsletterRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import analyticsRoute from './routes/analyticsRoute.js';
 
-// Load env vars
 dotenv.config();
-
-// Connect DB
 connectDB();
 
 const app = express();
 
-// Middleware
+// ✅ Sadece CORS middleware kullan
 app.use(cors({
     origin: [
         'https://www.bagbahceyatirim.com.tr',
         'https://bagbahceyatirim.com.tr',
-        "https://bagbahceyatirim.com",
-        "https://www.bagbahceyatirim.com",
-        "https://bagbahceyatirim.online",
-        "https://www.bagbahceyatirim.online",
-        "https://bagbahceyatirim.xyz",
-        "https://www.bagbahceyatirim.xyz",
-        'http://localhost:3000'
-    ], // izin verilecek alan adları
+        'https://bagbahceyatirim.com',
+        'https://www.bagbahceyatirim.com',
+        'https://bagbahceyatirim.online',
+        'https://www.bagbahceyatirim.online',
+        'https://bagbahceyatirim.xyz',
+        'https://www.bagbahceyatirim.xyz',
+        'http://localhost:3000',
+    ],
     credentials: true
 }));
+
 app.use(express.json());
 
 // Routes
 app.use('/api/form', formRoutes);
 app.use('/api/newsletter', newsletterRoutes);
 app.use('/api/admin', adminRoutes);
-app.use("/api/analytics", analyticsRoute);
+app.use('/api/analytics', analyticsRoute);
 
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
