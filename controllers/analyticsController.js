@@ -6,12 +6,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import { BetaAnalyticsDataClient } from '@google-analytics/data';
 // Google Analytics hizmet hesabı anahtar dosyasının yolu
-const analyticsDataClient = new BetaAnalyticsDataClient({
-  keyFile: path.join(__dirname, '../config/GA_KEY.json'),
-});
 // const analyticsDataClient = new BetaAnalyticsDataClient({
-//   keyFile: path.join('/etc/secrets', 'GA_KEY.json'),
+//   keyFile: path.join(__dirname, '../config/GA_KEY.json'),
 // });
+const analyticsDataClient = new BetaAnalyticsDataClient({
+  keyFile: path.join('/etc/secrets', 'GA_KEY.json'),
+});
 const GA_PROPERTY = 'properties/479914818';
 
 export const analyticsVisitsComparison = async (req, res) => {
