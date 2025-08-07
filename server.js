@@ -18,7 +18,20 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: [
+        'https://www.bagbahceyatirim.com.tr',
+        'https://bagbahceyatirim.com.tr',
+        "https://bagbahceyatirim.com",
+        "https://www.bagbahceyatirim.com",
+        "https://bagbahceyatirim.online",
+        "https://www.bagbahceyatirim.online",
+        "https://bagbahceyatirim.xyz",
+        "https://www.bagbahceyatirim.xyz",
+        'http://localhost:3000'
+    ], // izin verilecek alan adları
+    credentials: true
+}));
 app.use(express.json());
 
 // Routes
