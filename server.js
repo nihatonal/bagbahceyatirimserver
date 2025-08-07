@@ -14,22 +14,41 @@ connectDB();
 const app = express();
 
 // ✅ Sadece CORS middleware kullan
+const allowedOrigins = [
+    'https://www.bagbahceyatirim.com.tr',
+    'https://bagbahceyatirim.com.tr',
+    'https://bagbahceyatirim.com',
+    'https://www.bagbahceyatirim.com',
+    'https://bagbahceyatirim.online',
+    'https://www.bagbahceyatirim.online',
+    'https://bagbahceyatirim.xyz',
+    'https://www.bagbahceyatirim.xyz',
+    'http://localhost:3000', 
+    'http://localhost:5000'
+];  // Allow only your frontend URL
+
+// app.use(cors({
+//     origin: [
+//         'https://www.bagbahceyatirim.com.tr',
+//         'https://bagbahceyatirim.com.tr',
+//         'https://bagbahceyatirim.com',
+//         'https://www.bagbahceyatirim.com',
+//         'https://bagbahceyatirim.online',
+//         'https://www.bagbahceyatirim.online',
+//         'https://bagbahceyatirim.xyz',
+//         'https://www.bagbahceyatirim.xyz',
+//         'http://localhost:3000',
+//     ],
+//     credentials: true
+// }));
 app.use(cors({
-    origin: [
-        'https://www.bagbahceyatirim.com.tr',
-        'https://bagbahceyatirim.com.tr',
-        'https://bagbahceyatirim.com',
-        'https://www.bagbahceyatirim.com',
-        'https://bagbahceyatirim.online',
-        'https://www.bagbahceyatirim.online',
-        'https://bagbahceyatirim.xyz',
-        'https://www.bagbahceyatirim.xyz',
-        'http://localhost:3000',
-    ],
-    credentials: true
+    origin: allowedOrigins,  // Only allow requests from the allowed origins
+    methods: ['GET', 'POST', 'DELETE', 'PUT'],  // You can add other HTTP methods if needed
+    credentials: true, // <== BUNU EKLEMEN GEREKİYOR
 }));
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/form', formRoutes);
